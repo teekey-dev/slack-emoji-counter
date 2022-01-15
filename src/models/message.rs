@@ -8,7 +8,7 @@ pub struct Message {
     pub sub_type: Option<String>,
     pub hidden: Option<bool>,
     pub channel: Option<String>,
-    pub user: String,
+    pub user: Option<String>,
     pub text: String,
     pub ts: String,
     pub deleted_ts: Option<String>,

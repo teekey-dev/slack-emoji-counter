@@ -25,7 +25,7 @@ pub struct Channel {
     pub last_read: Option<String>,
     pub topic: Topic,
     pub purpose: Purpose,
-    pub previous_names: Vec::<String>,
+    pub previous_names: Option<Vec::<String>>,
     pub num_members: u16,
     pub locale: Option<String>
 }
