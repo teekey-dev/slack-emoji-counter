@@ -1,12 +1,15 @@
 mod models;
 use models::*;
 use std::collections::HashMap;
+use confy;
 
 #[tokio::main]
 async fn main() {
-    let slack_client = SlackClient::new("");
+    let configuration: Configuration = confy::load_path("configuration.toml").unwrap();
+
+    let slack_client = SlackClient::new(configuration.get_token());
     let channels = slack_client.get_channels().await.channels;
-    let channel: Channel = channels.into_iter().find(|channel| channel.name == "crew-커리어product-개발팀").unwrap();
+    let channel: Channel = channels.into_iter().find(|channel| channel.name == configuration.get_channel_name()).unwrap();
 
     let mut cursor = "0".to_string();
     let mut messages: Vec<Message> = vec![];
